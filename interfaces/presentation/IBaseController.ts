@@ -1,6 +1,6 @@
 export interface IBaseController<T> {
 
-  create(user: Partial<T>): Promise<void>;
+  create(obj: Partial<T>): Promise<void>;
 
   exportFromCSVToDB(): Promise<void>;
 
@@ -8,7 +8,7 @@ export interface IBaseController<T> {
 
   findOne(id: string): Promise<T>;
 
-  update(id: string, user: Partial<T>): Promise<void>;
+  update(id: string, obj: Partial<T>): Promise<void>;
 
   remove(id: string): Promise<void>;
 }

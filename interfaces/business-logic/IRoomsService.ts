@@ -1,13 +1,7 @@
 import { RoomEntity } from "@entities/RoomEntity";
-import { DeleteResult } from "typeorm";
+import { IBaseService } from "@interfaces/business-logic/IBaseService";
 
-export interface IRoomsService {
-    create(room: Partial<RoomEntity>): Promise<void>;
-    findAll(): Promise<RoomEntity[]>;
-    findOne(id: number): Promise<RoomEntity>;
-    update(id: number, changedRoom: Partial<RoomEntity>): Promise<void>;
-    remove(id: number): Promise<DeleteResult>;
-    exportFromCSVToDB(): Promise<void>;
+export interface IRoomsService extends IBaseService<RoomEntity> {
 }
 
 export const IRoomsService = Symbol("IRoomsService");

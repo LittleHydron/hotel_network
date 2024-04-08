@@ -1,13 +1,7 @@
 import { ReviewEntity } from "@entities/ReviewEntity";
-import { DeleteResult } from "typeorm";
+import { IBaseService } from "@interfaces/business-logic/IBaseService";
 
-export interface IReviewsService {
-    create(review: Partial<ReviewEntity>): Promise<void>;
-    findAll(): Promise<ReviewEntity[]>;
-    findOne(id: number): Promise<ReviewEntity>;
-    update(id: number, changedReview: Partial<ReviewEntity>): Promise<void>;
-    remove(id: number): Promise<DeleteResult>;
-    exportFromCSVToDB(): Promise<void>;
+export interface IReviewsService extends IBaseService<ReviewEntity> {
 }
 
 export const IReviewsService = Symbol("IReviewsService");

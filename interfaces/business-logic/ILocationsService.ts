@@ -1,13 +1,7 @@
 import { LocationEntity } from "@entities/LocationEntity";
-import { DeleteResult } from "typeorm";
+import { IBaseService } from "@interfaces/business-logic/IBaseService";
 
-export interface ILocationsService {
-    create(location: Partial<LocationEntity>): Promise<void>;
-    findAll(): Promise<LocationEntity[]>;
-    findOne(id: number): Promise<LocationEntity>;
-    update(id: number, changedLocation: Partial<LocationEntity>): Promise<void>;
-    remove(id: number): Promise<DeleteResult>;
-    exportFromCSVToDB(): Promise<void>;
+export interface ILocationsService extends IBaseService<LocationEntity> {
 }
 
 export const ILocationsService = Symbol("ILocationsService");
