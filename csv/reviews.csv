@@ -1,0 +1,11 @@
+id,hotelId,authorId,mark,text,postDate
+1,8,10,3,This is a review text 1,2024-04-03
+2,10,9,5,This is a review text 2,2024-04-08
+3,9,6,1,This is a review text 3,2024-04-01
+4,6,1,1,This is a review text 4,2024-04-09
+5,7,1,2,This is a review text 5,2024-04-05
+6,4,7,2,This is a review text 6,2024-04-02
+7,9,4,2,This is a review text 7,2024-04-04
+8,5,2,4,This is a review text 8,2024-04-09
+9,3,5,5,This is a review text 9,2024-04-03
+10,8,2,5,This is a review text 10,2024-04-03
