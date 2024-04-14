@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nest
 import { HotelEntity } from '@entities/HotelEntity';
 import { IHotelsService } from '@interfaces/business-logic/IHotelsService';
 import { IHotelsController } from '@interfaces/presentation/IHotelsController';
-import { DeleteResult } from 'typeorm';
 
 @Controller('hotels')
 export class HotelsController implements IHotelsController{
@@ -42,5 +41,11 @@ export class HotelsController implements IHotelsController{
   async remove(@Param('id') id: string): Promise<HotelEntity> {
     console.log("Deleting hotel with id: ", id);
     return await this.hotelsService.remove(Number(id));
+  }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    console.log("Dropping hotels table");
+    return await this.hotelsService.dropTable();
   }
 }

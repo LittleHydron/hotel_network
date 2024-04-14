@@ -10,5 +10,7 @@ export interface IBaseService<T> {
 
     remove(id: number): Promise<T>;
     
-    exportFromCSVToDB(): Promise<void>;
+    exportFromCSVToDB(): Promise<any>;
+
+    dropTable(): Promise<any>;
 }

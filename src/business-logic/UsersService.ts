@@ -45,9 +45,15 @@ export class UsersService implements IUsersService{
       console.log("Saving user: ", user);
       await this.usersRepository.save(user);
     }
+    return {message: "Users imported from CSV"};
   }
 
   static getFields() {
     return UserEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.usersRepository.clear();
+    return {message: "Users table dropped"};
   }
 }

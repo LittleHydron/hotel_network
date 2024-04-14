@@ -36,4 +36,9 @@ export class UsersController implements IUsersController{
   async remove(@Param('id') id: string): Promise<UserEntity> {
     return await this.usersService.remove(Number(id));
   }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    return await this.usersService.dropTable();
+  }
 }

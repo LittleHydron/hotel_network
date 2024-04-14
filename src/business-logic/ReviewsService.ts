@@ -45,9 +45,15 @@ export class ReviewsService implements IReviewsService{
       console.log("Saving review: ", review);
       await this.reviewsRepository.save(review);
     }
+    return {message: "Reviews imported from CSV"};
   }
 
   static getFields() {
     return ReviewEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.reviewsRepository.clear();
+    return {message: "Reviews table dropped"};
   }
 }

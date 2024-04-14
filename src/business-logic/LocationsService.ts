@@ -45,9 +45,15 @@ export class LocationsService implements ILocationsService{
       console.log("Saving location: ", location);
       await this.locationsRepository.save(location);
     }
+    return {message: "Locations imported from CSV"};
   }
 
   static getFields() {
     return LocationEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.locationsRepository.clear();
+    return {message: "Locations table dropped"};
   }
 }

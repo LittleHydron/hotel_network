@@ -47,9 +47,15 @@ export class HotelsService implements IHotelsService{
       console.log("Saving hotel: ", hotel);
       await this.hotelsRepository.save(hotel);
     }
+    return {message: "Hotels imported from CSV"};
   }
 
   static getFields() {
     return HotelEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.hotelsRepository.clear();
+    return {message: "Hotels table dropped"};
   }
 }

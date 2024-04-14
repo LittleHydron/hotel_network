@@ -45,9 +45,15 @@ export class RoomsService implements IRoomsService{
       console.log("Saving room: ", room);
       await this.roomsRepository.save(room);
     }
+    return {message: "Rooms imported from CSV"};
   }
 
   static getFields() {
     return RoomEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.roomsRepository.clear();
+    return {message: "Rooms table dropped"};
   }
 }

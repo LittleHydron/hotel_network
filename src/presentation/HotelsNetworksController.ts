@@ -36,4 +36,9 @@ export class HotelsNetworksController implements IHotelsNetworksController{
   async remove(@Param('id') id: string): Promise<HotelsNetworkEntity> {
     return await this.hotelsNetworksService.remove(Number(id));
   }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    return await this.hotelsNetworksService.dropTable();
+  }
 }

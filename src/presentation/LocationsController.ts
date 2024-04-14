@@ -36,4 +36,9 @@ export class LocationsController implements ILocationsController{
   async remove(@Param('id') id: string): Promise<LocationEntity> {
     return await this.locationsService.remove(Number(id));
   }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    return await this.locationsService.dropTable();
+  }
 }

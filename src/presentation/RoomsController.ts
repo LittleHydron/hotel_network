@@ -36,4 +36,9 @@ export class RoomsController implements IRoomsController{
   async remove(@Param('id') id: string): Promise<RoomEntity> {
     return await this.roomsService.remove(Number(id));
   }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    return await this.roomsService.dropTable();
+  }
 }

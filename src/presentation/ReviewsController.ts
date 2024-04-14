@@ -36,4 +36,9 @@ export class ReviewsController implements IReviewsController{
   async remove(@Param('id') id: string): Promise<ReviewEntity> {
     return await this.reviewsService.remove(Number(id));
   }
+
+  @Delete()
+  async dropTable(): Promise<any> {
+    return await this.reviewsService.dropTable();
+  }
 }

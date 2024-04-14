@@ -47,9 +47,15 @@ export class HotelsNetworksService implements IHotelsNetworksService{
       console.log("Saving hotelsNetwork: ", hotelsNetwork);
       await this.hotelsNetworksRepository.save(hotelsNetwork);
     }
+    return {message: "HotelsNetworks saved from CSV"};
   }
 
   static getFields(): string[] {
     return HotelsNetworkEntity.getFields();
+  }
+
+  async dropTable(): Promise<any> {
+    await this.hotelsNetworksRepository.clear();
+    return {message: "HotelsNetworks table dropped"};
   }
 }
