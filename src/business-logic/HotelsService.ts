@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
+
+import { Injectable } from '@nestjs/common';
 import { HotelEntity } from '@entities/HotelEntity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IHotelsService } from '@interfaces/business-logic/IHotelsService';
+
 
 @Injectable()
 export class HotelsService implements IHotelsService{
@@ -33,8 +35,10 @@ export class HotelsService implements IHotelsService{
     await this.hotelsRepository.save(hotel);
   }
 
-  async remove(id: number) {
-    return this.hotelsRepository.delete({id});
+  async remove(id: number): Promise<HotelEntity> {
+    let removedHotel = await this.hotelsRepository.findOneBy({id});
+    await this.hotelsRepository.remove(removedHotel);
+    return removedHotel;
   }
 
   async exportFromCSVToDB() {

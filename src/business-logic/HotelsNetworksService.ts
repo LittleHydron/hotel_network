@@ -33,8 +33,12 @@ export class HotelsNetworksService implements IHotelsNetworksService{
     await this.hotelsNetworksRepository.save(hotelsNetwork);
   }
 
-  async remove(id: number) {
-    return this.hotelsNetworksRepository.delete({id});
+  async remove(id: number): Promise<HotelsNetworkEntity> {
+    console.log("Removing hotelsNetwork with id: ", id);
+    let removedHotelsNetwork = await this.hotelsNetworksRepository.findOneBy({id});
+    console.log("Removing hotelsNetwork: ", removedHotelsNetwork);
+    await this.hotelsNetworksRepository.remove(removedHotelsNetwork);
+    return removedHotelsNetwork;
   }
 
   async exportFromCSVToDB() {

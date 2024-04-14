@@ -33,7 +33,7 @@ export class RoomsController implements IRoomsController{
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.roomsService.remove(Number(id));
+  async remove(@Param('id') id: string): Promise<RoomEntity> {
+    return await this.roomsService.remove(Number(id));
   }
 }

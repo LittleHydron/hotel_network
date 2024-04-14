@@ -10,5 +10,5 @@ export interface IBaseController<T> {
 
   update(id: string, obj: Partial<T>): Promise<void>;
 
-  remove(id: string): Promise<void>;
+  remove(id: string): Promise<T>;
 }

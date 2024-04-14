@@ -33,8 +33,10 @@ export class RoomsService implements IRoomsService{
     await this.roomsRepository.save(room);
   }
 
-  async remove(id: number) {
-    return this.roomsRepository.delete({id});
+  async remove(id: number):  Promise<RoomEntity> {
+    let removedRoom = await this.roomsRepository.findOneBy({id});
+    await this.roomsRepository.remove(removedRoom);
+    return removedRoom;
   }
 
   async exportFromCSVToDB() {

@@ -33,7 +33,7 @@ export class LocationsController implements ILocationsController{
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.locationsService.remove(Number(id));
+  async remove(@Param('id') id: string): Promise<LocationEntity> {
+    return await this.locationsService.remove(Number(id));
   }
 }

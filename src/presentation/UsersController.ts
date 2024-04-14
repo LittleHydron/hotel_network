@@ -33,7 +33,7 @@ export class UsersController implements IUsersController{
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.usersService.remove(Number(id));
+  async remove(@Param('id') id: string): Promise<UserEntity> {
+    return await this.usersService.remove(Number(id));
   }
 }

@@ -33,7 +33,7 @@ export class HotelsNetworksController implements IHotelsNetworksController{
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.hotelsNetworksService.remove(Number(id));
+  async remove(@Param('id') id: string): Promise<HotelsNetworkEntity> {
+    return await this.hotelsNetworksService.remove(Number(id));
   }
 }

@@ -33,8 +33,10 @@ export class ReviewsService implements IReviewsService{
     await this.reviewsRepository.save(review);
   }
 
-  async remove(id: number) {
-    return this.reviewsRepository.delete({id});
+  async remove(id: number): Promise<ReviewEntity> {
+    let removedReview = await this.reviewsRepository.findOneBy({id});
+    await this.reviewsRepository.remove(removedReview);
+    return removedReview;
   }
 
   async exportFromCSVToDB() {

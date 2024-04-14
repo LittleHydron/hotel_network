@@ -33,8 +33,10 @@ export class UsersService implements IUsersService{
     await this.usersRepository.save(user);
   }
 
-  async remove(id: number) {
-    return this.usersRepository.delete({id});
+  async remove(id: number): Promise<UserEntity> {
+    let removedUser = await this.usersRepository.findOneBy({id});
+    await this.usersRepository.remove(removedUser);
+    return removedUser;
   }
 
   async exportFromCSVToDB() {

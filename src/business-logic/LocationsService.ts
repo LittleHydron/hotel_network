@@ -33,8 +33,10 @@ export class LocationsService implements ILocationsService{
     await this.locationsRepository.save(location);
   }
 
-  async remove(id: number) {
-    return this.locationsRepository.delete({id});
+  async remove(id: number): Promise<LocationEntity> {
+    let removedLocation = await this.locationsRepository.findOneBy({id});
+    await this.locationsRepository.remove(removedLocation);
+    return removedLocation;
   }
 
   async exportFromCSVToDB() {

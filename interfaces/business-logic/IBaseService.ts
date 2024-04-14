@@ -1,5 +1,3 @@
-import { DeleteResult } from "typeorm";
-
 export interface IBaseService<T> {
 
     create(obj: Partial<T>): Promise<T>;
@@ -10,7 +8,7 @@ export interface IBaseService<T> {
 
     update(id: number, changedObj: Partial<T>): Promise<void>;
 
-    remove(id: number): Promise<DeleteResult>;
+    remove(id: number): Promise<T>;
     
     exportFromCSVToDB(): Promise<void>;
 }

@@ -33,7 +33,7 @@ export class ReviewsController implements IReviewsController{
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    await this.reviewsService.remove(Number(id));
+  async remove(@Param('id') id: string): Promise<ReviewEntity> {
+    return await this.reviewsService.remove(Number(id));
   }
 }
