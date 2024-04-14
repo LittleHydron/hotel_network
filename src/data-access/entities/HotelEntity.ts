@@ -62,4 +62,8 @@ export class HotelEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ["name", "hotelsNetworkId", "locationId"];
+    }
 }

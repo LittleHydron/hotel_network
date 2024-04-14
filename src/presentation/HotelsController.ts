@@ -8,32 +8,38 @@ export class HotelsController implements IHotelsController{
   constructor(@Inject(IHotelsService) private readonly hotelsService: IHotelsService) {}
 
   @Post()
-  async create(@Body() hotel: Partial<HotelEntity>) {
-    return this.hotelsService.create(hotel);
+  async create(@Body() hotel: Partial<HotelEntity>): Promise<HotelEntity> {
+    console.log("Creating hotel request received: ", hotel);
+    return await this.hotelsService.create(hotel);
   }
 
   @Post('from-csv')
   async exportFromCSVToDB() {
+    console.log("Exporting hotels from CSV to DB");
     return this.hotelsService.exportFromCSVToDB();
   }
 
   @Get()
   findAll() {
+    console.log("Getting all hotels");
     return this.hotelsService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
+    console.log("Getting hotel with id: ", id);
     return this.hotelsService.findOne(Number(id));
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() hotel: Partial<HotelEntity>) {
+    console.log("Updating hotel with id: ", id, " with data: ", hotel);
     return this.hotelsService.update(Number(id), hotel);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
+    console.log("Deleting hotel with id: ", id);
     await this.hotelsService.remove(Number(id));
   }
 }

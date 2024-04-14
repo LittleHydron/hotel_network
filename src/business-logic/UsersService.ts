@@ -12,11 +12,11 @@ export class UsersService implements IUsersService{
     private readonly usersRepository: Repository<UserEntity>,
   ){}
 
-  async create(user: Partial<UserEntity>) {
+  async create(user: Partial<UserEntity>): Promise<UserEntity> {
     const newUser = new UserEntity(user);
     const newId = (await this.usersRepository.find()).reduce((max, user) => user.id > max ? user.id : max, 0) + 1;
     newUser.id = newId;
-    await this.usersRepository.save(newUser);
+    return await this.usersRepository.save(newUser);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class UsersService implements IUsersService{
       console.log("Saving user: ", user);
       await this.usersRepository.save(user);
     }
+  }
+
+  static getFields() {
+    return UserEntity.getFields();
   }
 }

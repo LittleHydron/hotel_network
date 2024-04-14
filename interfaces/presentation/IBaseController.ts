@@ -1,6 +1,6 @@
 export interface IBaseController<T> {
 
-  create(obj: Partial<T>): Promise<void>;
+  create(obj: Partial<T>): Promise<T>;
 
   exportFromCSVToDB(): Promise<void>;
 

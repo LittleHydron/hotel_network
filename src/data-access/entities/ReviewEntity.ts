@@ -61,4 +61,8 @@ export class ReviewEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ['hotelId', 'authorId', 'mark', 'text', 'postDate'];
+    }
 }

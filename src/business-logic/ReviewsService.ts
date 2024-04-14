@@ -12,11 +12,11 @@ export class ReviewsService implements IReviewsService{
     private readonly reviewsRepository: Repository<ReviewEntity>,
   ){}
 
-  async create(review: Partial<ReviewEntity>) {
+  async create(review: Partial<ReviewEntity>): Promise<ReviewEntity> {
     const newReview = new ReviewEntity(review);
     const newId = (await this.reviewsRepository.find()).reduce((max, review) => review.id > max ? review.id : max, 0) + 1;
     newReview.id = newId;
-    await this.reviewsRepository.save(newReview);
+    return await this.reviewsRepository.save(newReview);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class ReviewsService implements IReviewsService{
       console.log("Saving review: ", review);
       await this.reviewsRepository.save(review);
     }
+  }
+
+  static getFields() {
+    return ReviewEntity.getFields();
   }
 }

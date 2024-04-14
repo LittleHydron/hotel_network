@@ -12,11 +12,11 @@ export class LocationsService implements ILocationsService{
     private readonly locationsRepository: Repository<LocationEntity>,
   ){}
 
-  async create(location: Partial<LocationEntity>) {
+  async create(location: Partial<LocationEntity>): Promise<LocationEntity> {
     const newLocation = new LocationEntity(location);
     const newId = (await this.locationsRepository.find()).reduce((max, location) => location.id > max ? location.id : max, 0) + 1;
     newLocation.id = newId;
-    await this.locationsRepository.save(newLocation);
+    return await this.locationsRepository.save(newLocation);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class LocationsService implements ILocationsService{
       console.log("Saving location: ", location);
       await this.locationsRepository.save(location);
     }
+  }
+
+  static getFields() {
+    return LocationEntity.getFields();
   }
 }

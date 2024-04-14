@@ -47,4 +47,8 @@ export class HotelsNetworkEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ['name'];
+    }
 }

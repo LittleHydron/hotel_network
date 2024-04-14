@@ -47,4 +47,8 @@ export class LocationEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ['latitude', 'longitude'];
+    }
 }

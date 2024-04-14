@@ -55,4 +55,8 @@ export class RoomEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ['hotelId', 'number', 'isAvailable'];
+    }
 }

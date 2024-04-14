@@ -2,7 +2,7 @@ import { DeleteResult } from "typeorm";
 
 export interface IBaseService<T> {
 
-    create(obj: Partial<T>): Promise<void>;
+    create(obj: Partial<T>): Promise<T>;
 
     findAll(): Promise<T[]>;
 

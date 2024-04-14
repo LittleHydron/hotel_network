@@ -12,11 +12,11 @@ export class HotelsNetworksService implements IHotelsNetworksService{
     private readonly hotelsNetworksRepository: Repository<HotelsNetworkEntity>,
   ){}
 
-  async create(hotelsNetwork: Partial<HotelsNetworkEntity>) {
+  async create(hotelsNetwork: Partial<HotelsNetworkEntity>): Promise<HotelsNetworkEntity> {
     const newHotelsNetwork = new HotelsNetworkEntity(hotelsNetwork);
     const newId = (await this.hotelsNetworksRepository.find()).reduce((max, hotelsNetwork) => hotelsNetwork.id > max ? hotelsNetwork.id : max, 0) + 1;
     newHotelsNetwork.id = newId;
-    await this.hotelsNetworksRepository.save(newHotelsNetwork);
+    return await this.hotelsNetworksRepository.save(newHotelsNetwork);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class HotelsNetworksService implements IHotelsNetworksService{
       console.log("Saving hotelsNetwork: ", hotelsNetwork);
       await this.hotelsNetworksRepository.save(hotelsNetwork);
     }
+  }
+
+  static getFields(): string[] {
+    return HotelsNetworkEntity.getFields();
   }
 }

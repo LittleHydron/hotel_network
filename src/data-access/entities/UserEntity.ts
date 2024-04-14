@@ -47,4 +47,8 @@ export class UserEntity {
             });
         });
     }
+
+    static getFields(): string[] {
+        return ['firstName', 'lastName'];
+    }
 }

@@ -12,11 +12,11 @@ export class HotelsService implements IHotelsService{
     private readonly hotelsRepository: Repository<HotelEntity>,
   ){}
 
-  async create(hotel: Partial<HotelEntity>) {
+  async create(hotel: Partial<HotelEntity>): Promise<HotelEntity> {
     const newHotel = new HotelEntity(hotel);
     const newId = (await this.hotelsRepository.find()).reduce((max, hotel) => hotel.id > max ? hotel.id : max, 0) + 1;
     newHotel.id = newId;
-    await this.hotelsRepository.save(newHotel);
+    return await this.hotelsRepository.save(newHotel);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class HotelsService implements IHotelsService{
       console.log("Saving hotel: ", hotel);
       await this.hotelsRepository.save(hotel);
     }
+  }
+
+  static getFields() {
+    return HotelEntity.getFields();
   }
 }

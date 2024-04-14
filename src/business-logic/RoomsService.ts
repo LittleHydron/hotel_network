@@ -12,11 +12,11 @@ export class RoomsService implements IRoomsService{
     private readonly roomsRepository: Repository<RoomEntity>,
   ){}
 
-  async create(room: Partial<RoomEntity>) {
+  async create(room: Partial<RoomEntity>): Promise<RoomEntity> {
     const newRoom = new RoomEntity(room);
     const newId = (await this.roomsRepository.find()).reduce((max, room) => room.id > max ? room.id : max, 0) + 1;
     newRoom.id = newId;
-    await this.roomsRepository.save(newRoom);
+    return await this.roomsRepository.save(newRoom);
   }
 
   async findAll() {
@@ -43,5 +43,9 @@ export class RoomsService implements IRoomsService{
       console.log("Saving room: ", room);
       await this.roomsRepository.save(room);
     }
+  }
+
+  static getFields() {
+    return RoomEntity.getFields();
   }
 }

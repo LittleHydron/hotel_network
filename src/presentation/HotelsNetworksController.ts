@@ -8,7 +8,7 @@ export class HotelsNetworksController implements IHotelsNetworksController{
   constructor(@Inject(IHotelsNetworksService) private readonly hotelsNetworksService: IHotelsNetworksService) {}
 
   @Post()
-  async create(@Body() hotelsNetwork: Partial<HotelsNetworkEntity>) {
+  async create(@Body() hotelsNetwork: Partial<HotelsNetworkEntity>): Promise<HotelsNetworkEntity> {
     return this.hotelsNetworksService.create(hotelsNetwork);
   }
 
