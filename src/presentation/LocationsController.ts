@@ -28,7 +28,7 @@ export class LocationsController implements ILocationsController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() location: Partial<LocationEntity>) {
+  async update(@Param('id') id: string, @Body() location: Partial<LocationEntity>): Promise<LocationEntity> {
     return this.locationsService.update(Number(id), location);
   }
 

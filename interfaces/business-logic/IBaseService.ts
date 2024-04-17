@@ -6,7 +6,7 @@ export interface IBaseService<T> {
 
     findOne(id: number): Promise<T>;
 
-    update(id: number, changedObj: Partial<T>): Promise<void>;
+    update(id: number, changedObj: Partial<T>): Promise<T>;
 
     remove(id: number): Promise<T>;
     

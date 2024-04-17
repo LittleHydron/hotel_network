@@ -27,10 +27,12 @@ export class RoomsService implements IRoomsService{
     return this.roomsRepository.findOneBy({id});
   }
 
-  async update(id: number, changedRoom: Partial<RoomEntity>) {
-    const room = await this.roomsRepository.findOneBy({id});
-    room.isAvailable = changedRoom.isAvailable;
-    await this.roomsRepository.save(room);
+  async update(id: number, changedRoom: Partial<RoomEntity>): Promise<RoomEntity> {
+    let room = await this.roomsRepository.findOneBy({id});
+    room.id = id;
+    Object.assign(room, changedRoom);
+    await this.roomsRepository.update(id, room);
+    return room;
   }
 
   async remove(id: number):  Promise<RoomEntity> {

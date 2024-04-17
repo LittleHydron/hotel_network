@@ -27,10 +27,12 @@ export class ReviewsService implements IReviewsService{
     return this.reviewsRepository.findOneBy({id});
   }
 
-  async update(id: number, changedReview: Partial<ReviewEntity>) {
+  async update(id: number, changedReview: Partial<ReviewEntity>): Promise<ReviewEntity> {
     let review = await this.reviewsRepository.findOneBy({id});
     review.id = id;
-    await this.reviewsRepository.save(review);
+    Object.assign(review, changedReview);
+    await this.reviewsRepository.update(id, review);
+    return review;
   }
 
   async remove(id: number): Promise<ReviewEntity> {

@@ -28,7 +28,7 @@ export class UsersController implements IUsersController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() user: Partial<UserEntity>) {
+  async update(@Param('id') id: string, @Body() user: Partial<UserEntity>): Promise<UserEntity> {
     return this.usersService.update(Number(id), user);
   }
 

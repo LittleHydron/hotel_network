@@ -27,10 +27,12 @@ export class UsersService implements IUsersService{
     return this.usersRepository.findOneBy({id});
   }
 
-  async update(id: number, changedUser: Partial<UserEntity>) {
+  async update(id: number, changedUser: Partial<UserEntity>): Promise<UserEntity> {
     let user = await this.usersRepository.findOneBy({id});
     user.id = id;
-    await this.usersRepository.save(user);
+    Object.assign(user, changedUser);
+    await this.usersRepository.update(id, user);
+    return user;
   }
 
   async remove(id: number): Promise<UserEntity> {

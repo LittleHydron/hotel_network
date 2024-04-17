@@ -28,7 +28,7 @@ export class ReviewsController implements IReviewsController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() review: Partial<ReviewEntity>) {
+  async update(@Param('id') id: string, @Body() review: Partial<ReviewEntity>): Promise<ReviewEntity> {
     return this.reviewsService.update(Number(id), review);
   }
 

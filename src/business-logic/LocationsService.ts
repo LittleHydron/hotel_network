@@ -27,10 +27,12 @@ export class LocationsService implements ILocationsService{
     return this.locationsRepository.findOneBy({id});
   }
 
-  async update(id: number, changedLocation: Partial<LocationEntity>) {
+  async update(id: number, changedLocation: Partial<LocationEntity>): Promise<LocationEntity> {
     let location = await this.locationsRepository.findOneBy({id});
     location.id = id;
-    await this.locationsRepository.save(location);
+    Object.assign(location, changedLocation);
+    await this.locationsRepository.update(id, location);
+    return location;
   }
 
   async remove(id: number): Promise<LocationEntity> {

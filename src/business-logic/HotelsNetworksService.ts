@@ -27,10 +27,12 @@ export class HotelsNetworksService implements IHotelsNetworksService{
     return this.hotelsNetworksRepository.findOneBy({id});
   }
 
-  async update(id: number, changedHotelsNetwork: Partial<HotelsNetworkEntity>) {
+  async update(id: number, changedHotelsNetwork: Partial<HotelsNetworkEntity>): Promise<HotelsNetworkEntity> {
     let hotelsNetwork = await this.hotelsNetworksRepository.findOneBy({id});
     hotelsNetwork.id = id;
-    await this.hotelsNetworksRepository.save(hotelsNetwork);
+    Object.assign(hotelsNetwork, changedHotelsNetwork);
+    await this.hotelsNetworksRepository.update(id, hotelsNetwork);
+    return hotelsNetwork;
   }
 
   async remove(id: number): Promise<HotelsNetworkEntity> {

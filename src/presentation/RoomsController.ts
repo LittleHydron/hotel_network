@@ -28,7 +28,7 @@ export class RoomsController implements IRoomsController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() room: Partial<RoomEntity>) {
+  async update(@Param('id') id: string, @Body() room: Partial<RoomEntity>): Promise<RoomEntity> {
     return this.roomsService.update(Number(id), room);
   }
 

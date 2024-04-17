@@ -32,7 +32,7 @@ export class HotelsController implements IHotelsController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() hotel: Partial<HotelEntity>) {
+  async update(@Param('id') id: string, @Body() hotel: Partial<HotelEntity>): Promise<HotelEntity> {
     console.log("Updating hotel with id: ", id, " with data: ", hotel);
     return this.hotelsService.update(Number(id), hotel);
   }

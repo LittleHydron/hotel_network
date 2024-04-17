@@ -28,7 +28,7 @@ export class HotelsNetworksController implements IHotelsNetworksController{
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() hotelsNetwork: Partial<HotelsNetworkEntity>) {
+  async update(@Param('id') id: string, @Body() hotelsNetwork: Partial<HotelsNetworkEntity>): Promise<HotelsNetworkEntity> {
     return this.hotelsNetworksService.update(Number(id), hotelsNetwork);
   }
 
